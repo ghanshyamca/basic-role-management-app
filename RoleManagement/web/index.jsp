@@ -1,17 +1,9 @@
-<%-- 
-    Document   : index
-    Created on : Aug 14, 2014, 5:49:08 PM
-    Author     : Administrator
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+Table of content
+<ul>
+    <li>Rights</li>
+    <li>Modules</li>
+    <li>Modules Hierarchy</li>
+    <li>Users</li>
+    <li>User Groups</li>
+    <li>User Rights</li>
+</ul>
