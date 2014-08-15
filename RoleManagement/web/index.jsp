@@ -1,6 +1,6 @@
 Table of content
 <ul>
-    <li>Rights</li>
+    <li><a href="jsp/rights/view-all.jsp">Rights</a></li>
     <li>Modules</li>
     <li>Modules Hierarchy</li>
     <li>Users</li>
