@@ -30,6 +30,9 @@
         <tfoot>
             Total Records: ${count}
         </tfoot>
+        <tfoot>
+            [<a href="add.jsp">Add</a>]
+        </tfoot>
     </table>
 </c:if>
 
