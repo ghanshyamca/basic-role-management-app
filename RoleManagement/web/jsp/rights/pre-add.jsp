@@ -7,7 +7,7 @@
         </title>
     </head>
     <body>
-        <form>
+        <form action="post-add.jsp" method="post">
             <table>
                 <tr>
                     <th>
@@ -15,7 +15,7 @@
                                      key="rights.add.rights.name"/>
                     </th>
                     <td>
-                        <input type="text" name="right" size="20" maxlength="20" 
+                        <input type="text" name="rights" size="20" maxlength="20" 
                                value="${param.right}"/>
                     </td>
                     <td>
