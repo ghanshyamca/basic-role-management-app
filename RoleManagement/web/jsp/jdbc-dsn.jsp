@@ -1,5 +1,5 @@
-<%@taglib prefix="c" uri="/WEB-INF/tld/c.tld"%>
 <%@taglib prefix="sql" uri="/WEB-INF/tld/sql.tld"%>
+<%@taglib prefix="c" uri="/WEB-INF/tld/c.tld"%>
 
 <c:set var="fileSp" scope="page" value='<%=System.getProperty("file.separator")%>'/>
 <c:set value='${pageContext.request.getRealPath("")}' scope="page" var="dbPath"/>
