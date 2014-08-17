@@ -33,10 +33,18 @@
                         <tr>
                             <td>${row.rights_text}</td>
                             <td>
-                                <a href="javascript:alert('Edit: ${rights_id}');">
-                                    <fmt:message bundle="${labels}" 
-                                                 key="rights.view.link.edit.text"/>
-                                </a>
+                                <fmt:message bundle="${labels}" scope="page"
+                                             key="rights.view.link.edit.text"
+                                             var="txt"/>
+                                <form method="post" action="pre-edit.jsp" class="margin-0-px">
+                                    <input type="hidden" name="id" 
+                                           value="${row.rights_id}"/>
+                                    <input type="hidden" name="rights" 
+                                           value="${row.rights_text}"/>
+                                    <input type="hidden" name="deleted" 
+                                           value="${row.rights_deleted}"/>
+                                    <input type="submit" value="${txt}"/>
+                                </form>
                             </td>
                         </tr>
                         <c:set scope="page" var="count" value="${1 + count}"/>

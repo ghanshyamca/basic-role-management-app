@@ -32,7 +32,8 @@
     </c:if>
 
     <c:if test="${null != error}">
-        <c:set scope="request" var="error_msg" value="${error}"/>
+        <fmt:message bundle="${messages}" key="server.error" scope="request" 
+                     var="error_msg"/>
         <c:set scope="page" value="false" var="proceed"/>
     </c:if>
 </c:if>
@@ -56,7 +57,8 @@
     </c:if>
 
     <c:if test="${null != error}">
-        <c:set scope="request" var="error_msg" value="${error}"/>
+        <fmt:message bundle="${messages}" key="server.error" scope="request" 
+                     var="error_msg"/>
         <c:set scope="page" value="false" var="proceed"/>
     </c:if>
 </c:if>
