@@ -18,18 +18,16 @@
 <c:if test="${proceed}">
     <c:catch var="error">
         <sql:query dataSource="${jdbcDsn}" scope="page" var="result">
-            select count(rights_text) from rights_tbl where lower(rights_text) = lower(?)
+            select rights_text from rights_tbl where lower(rights_text) = lower(?)
             <sql:param value="${param.rights}"/>
         </sql:query>
     </c:catch>
 
     <c:if test="${null == error}">
         <c:forEach items="${result.rows}" var="row">
-            <c:if test="${0 < row.count}">
-                <fmt:message bundle="${messages}" key="rights.add.name.exist"
-                             scope="request" var="error_msg"/>
-                <c:set scope="page" value="false" var="proceed"/>
-            </c:if>
+            <fmt:message bundle="${messages}" key="rights.add.name.exist"
+                         scope="request" var="error_msg"/>
+            <c:set scope="page" value="false" var="proceed"/>
         </c:forEach>
     </c:if>
 
