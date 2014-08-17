@@ -47,10 +47,8 @@
                                  key="rights.view.total.count"/> ${count}
                 </tfoot>
                 <tfoot>
-                    [<a href="pre-add.jsp">
-                        <fmt:message bundle="${labels}" 
-                                     key="rights.view.link.add.text"/>
-                    </a>]
+                    [<a href="pre-add.jsp"><fmt:message bundle="${labels}" 
+                                     key="rights.view.link.add.text"/></a>]
                 </tfoot>
             </table>
         </c:if>

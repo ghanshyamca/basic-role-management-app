@@ -15,10 +15,12 @@
                  scope="request" var="rights_status_error"/>
 </c:if>
 
-<c:if test="${!proceed}">
-    false
+<c:if test="${proceed}">
+    <c:set scope="request" var="success_msg" value="can procedd ..."/>
 </c:if>
 
-<c:if test="${proceed}">
-    true
+<c:if test="${!proceed}">
+    <c:set scope="request" var="error_msg" value="can't proceed ..."/>
 </c:if>
+
+<jsp:forward page="pre-add.jsp"/>

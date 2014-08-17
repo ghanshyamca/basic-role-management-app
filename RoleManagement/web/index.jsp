@@ -13,22 +13,22 @@
                 </a>
             </li>
             <li>
-                <a href="jsp/rights/view-all.jsp">
+                <a href="#">
                     <fmt:message bundle="${labels}" key="index.list.modules"/>
                 </a>
             </li>
             <li>
-                <a href="jsp/rights/view-all.jsp">
+                <a href="#">
                     <fmt:message bundle="${labels}" key="index.list.modules.hierarchy"/>
                 </a>
             </li>
             <li>
-                <a href="jsp/rights/view-all.jsp">
+                <a href="#">
                     <fmt:message bundle="${labels}" key="index.list.user.groups"/>
                 </a>
             </li>
             <li>
-                <a href="jsp/rights/view-all.jsp">
+                <a href="#">
                     <fmt:message bundle="${labels}" key="index.list.user.rights"/>
                 </a>
             </li>

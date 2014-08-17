@@ -5,3 +5,7 @@
 .success-font-color {
     color: #35a10b;
 }
+
+.bold-font {
+    font-weight: bold;
+}
