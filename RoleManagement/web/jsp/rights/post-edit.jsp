@@ -15,6 +15,10 @@
                  scope="request" var="rights_status_error"/>
 </c:if>
 
+<c:if test='${null == param.id || "" == param.id.trim()}'>
+    <c:set scope="page" value="false" var="proceed"/>
+</c:if>
+
 <c:if test="${proceed}">
     <c:catch var="error">
         <sql:query dataSource="${jdbcDsn}" scope="page" var="result">
