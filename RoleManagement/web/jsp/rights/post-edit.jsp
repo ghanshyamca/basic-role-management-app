@@ -44,8 +44,8 @@
 
     <c:catch var="error">
         <sql:update dataSource="${jdbcDsn}" scope="page" var="result">
-            update rights_tbl set rights_text=? and rights_deleted=? where
-            rights_id=?
+            update rights_tbl set rights_text = ?, rights_deleted = ? where
+            rights_id = ?
             <sql:param value="${param.rights}"/>
             <sql:param value="${param.deleted}"/>
             <sql:param value="${param.id}"/>
