@@ -13,12 +13,38 @@
                          key="rights.view.link.cancel.text"/></a>]
             [<a href="pre-add.jsp"><fmt:message bundle="${labels}" 
                                      key="rights.view.link.add.text"/></a>]
+            <c:if test="${null != param.v}">
+                <c:set scope="page" value='href="view-all.jsp"' var="href"/>
+            </c:if>
+            [<a ${href}><fmt:message bundle="${labels}" 
+                                     key="rights.view.rights.all"/></a> |
+            <c:remove scope="page" var="href"/>
+            <c:if test="${0 != param.v}">
+                <c:set scope="page" value='href="view-all.jsp?v=0"' var="href"/>
+            </c:if>
+            <a ${href}><fmt:message bundle="${labels}" 
+                                     key="rights.view.rights.active"/></a> |
+            <c:remove scope="page" var="href"/>
+            <c:if test="${1 != param.v}">
+                <c:set scope="page" value='href="view-all.jsp?v=1"' var="href"/>
+            </c:if>
+            <a ${href}><fmt:message bundle="${labels}" 
+                                     key="rights.view.rights.inactive"/></a>]
+            <c:remove scope="page" var="href"/>
         </p>
 
         <c:catch var="error">
-            <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
-                select * from rights_tbl
-            </sql:query>
+            <c:if test="${null == param.v}">
+                <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
+                    select * from rights_tbl
+                </sql:query>
+            </c:if>
+            <c:if test="${null != param.v}">
+                <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
+                    select * from rights_tbl where rights_deleted = ?
+                    <sql:param value="${param.v}"/>
+                </sql:query>
+            </c:if>
         </c:catch>
 
         <c:if test="${null == error}">
@@ -72,6 +98,24 @@
                          key="rights.view.link.cancel.text"/></a>]
             [<a href="pre-add.jsp"><fmt:message bundle="${labels}" 
                                      key="rights.view.link.add.text"/></a>]
+            <c:if test="${null != param.v}">
+                <c:set scope="page" value='href="view-all.jsp"' var="href"/>
+            </c:if>
+            [<a ${href}><fmt:message bundle="${labels}" 
+                                     key="rights.view.rights.all"/></a> |
+            <c:remove scope="page" var="href"/>
+            <c:if test="${0 != param.v}">
+                <c:set scope="page" value='href="view-all.jsp?v=0"' var="href"/>
+            </c:if>
+            <a ${href}><fmt:message bundle="${labels}" 
+                                     key="rights.view.rights.active"/></a> |
+            <c:remove scope="page" var="href"/>
+            <c:if test="${1 != param.v}">
+                <c:set scope="page" value='href="view-all.jsp?v=1"' var="href"/>
+            </c:if>
+            <a ${href}><fmt:message bundle="${labels}" 
+                                     key="rights.view.rights.inactive"/></a>]
+            <c:remove scope="page" var="href"/>
         </p>
     </body>
 </html>
