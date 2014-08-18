@@ -7,6 +7,10 @@
         <link rel="stylesheet" href="../../css/style.css"/>
     </head>
     <body>
+        <p>
+        <div class="error-font-color">${error_msg}</div>
+        <div class="success-font-color">${success_msg}</div>
+        </p>
         <c:set scope="page" value="true" var="proceed"/>
         <c:if test='${null == param.id || param.id.trim().isEmpty()}'>
             <c:set scope="page" value="false" var="proceed"/>
@@ -18,7 +22,7 @@
             <c:set scope="page" value="false" var="proceed"/>
         </c:if>
         <c:if test="${proceed}">
-            <form>
+            <form method="post" action="post-edit.jsp">
                 <input type="hidden" name="id" value="${param.id}"/>
                 <p>
                     <div class="bold-font">
@@ -28,6 +32,7 @@
                     <div>
                         <input type="text" name="rights" value="${param.rights}" 
                            size="20" maxlength="20"/>
+                        <span class="error-font-color">${rights_name_error}</span>
                     </div>
                 </p>
                 <p>
@@ -49,12 +54,13 @@
                         <c:if test='${null != param.deleted && 1 == param.deleted}'>
                             <c:set var="check" value='checked="checked"' scope="page"/>
                         </c:if>
-                        <input type="radio" name="deleted" value="false" 
+                        <input type="radio" name="deleted" value="1" 
                                id="status1" ${check}/>
                         <label for="status1">
                             <fmt:message bundle="${labels}" 
                                          key="rights.edit.rights.status.inactive"/>
                         </label>
+                        <span class="error-font-color">${rights_status_error}</span>
                     </div>
                 </p>
                 <p>
