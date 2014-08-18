@@ -1,17 +1,64 @@
-<%-- 
-    Document   : post-add
-    Created on : 18 Aug, 2014, 3:25:54 PM
-    Author     : sharma
---%>
+<jsp:directive.include file="../resource-bundles.jsp"/>
+<jsp:directive.include file="../jdbc-dsn.jsp"/>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+<c:set scope="page" value="true" var="proceed"/>
+
+<c:if test='${null == param.title || "" == param.title.trim()}'>
+    <c:set scope="page" value="false" var="proceed"/>
+    <fmt:message bundle="${messages}" key="modules.add.title.empty" 
+                 scope="request" var="title_error"/>
+</c:if>
+
+<c:if test='${null == param.deleted || "" == param.deleted.trim()}'>
+    <c:set scope="page" value="false" var="proceed"/>
+    <fmt:message bundle="${messages}" key="modules.add.status.empty" 
+                 scope="request" var="status_error"/>
+</c:if>
+
+<c:if test="${proceed}">
+    <c:catch var="error">
+        <sql:query dataSource="${jdbcDsn}" scope="page" var="result">
+            select modules_text from modules_tbl where lower(modules_text) = lower(?)
+            <sql:param value="${param.title}"/>
+        </sql:query>
+    </c:catch>
+
+    <c:if test="${null == error}">
+        <c:forEach items="${result.rows}" var="row">
+            <fmt:message bundle="${messages}" key="modules.add.title.exist"
+                         scope="request" var="error_msg"/>
+            <c:set scope="page" value="false" var="proceed"/>
+        </c:forEach>
+    </c:if>
+
+    <c:if test="${null != error}">
+        <fmt:message bundle="${messages}" key="server.error" scope="request" 
+                     var="error_msg"/>
+        <c:set scope="page" value="false" var="proceed"/>
+    </c:if>
+</c:if>
+
+<c:if test="${proceed}">
+
+    <c:catch var="error">
+        <sql:update dataSource="${jdbcDsn}" scope="page" var="result">
+            insert into modules_tbl (modules_text, modules_deleted) values (?, ?)
+            <sql:param value="${param.title}"/>
+            <sql:param value="${param.deleted}"/>
+        </sql:update>
+    </c:catch>
+
+    <c:if test="${null == error}">
+        <fmt:message bundle="${messages}" key="modules.add.success" scope="request"
+                     var="success_msg"/>
+        <c:set scope="request" value="${success_msg} ${result}" var="success_msg"/>
+    </c:if>
+
+    <c:if test="${null != error}">
+        <fmt:message bundle="${messages}" key="server.error" scope="request" 
+                     var="error_msg"/>
+        <c:set scope="page" value="false" var="proceed"/>
+    </c:if>
+</c:if>
+
+<jsp:forward page="pre-add.jsp"/>

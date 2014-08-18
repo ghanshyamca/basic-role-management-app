@@ -30,7 +30,7 @@
                                  key="modules.add.status"/>
                 </div>
                 <div>
-                    <c:if test='${null == param.deleted && null == deleted_error}'>
+                    <c:if test='${null == param.deleted && null == status_error}'>
                         <c:set var="check" value='checked="checked"' scope="page"/>
                     </c:if>
                     <c:if test='${null != param.deleted && 0 == param.deleted}'>
@@ -51,7 +51,7 @@
                         <fmt:message bundle="${labels}" 
                                      key="modules.add.inactive"/>
                     </label>
-                    <span class="error-font-color">${deleted_error}</span>
+                    <span class="error-font-color">${status_error}</span>
                 </div>
             </p>
             <p>
