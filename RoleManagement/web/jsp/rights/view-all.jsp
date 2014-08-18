@@ -7,6 +7,14 @@
         <link rel="stylesheet" href="../../css/style.css"/>
     </head>
     <body>
+        
+        <p>
+            [<a href="../../index.jsp"><fmt:message bundle="${labels}" 
+                         key="rights.view.link.cancel.text"/></a>]
+            [<a href="pre-add.jsp"><fmt:message bundle="${labels}" 
+                                     key="rights.view.link.add.text"/></a>]
+        </p>
+
         <c:catch var="error">
             <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
                 select * from rights_tbl
@@ -15,57 +23,55 @@
 
         <c:if test="${null == error}">
             <c:set scope="page" var="count" value="0"/>
-            <table>
-                <thead>
-                    <tr>
-                        <th>
-                            <fmt:message bundle="${labels}" 
-                                         key="rights.view.column.rights"/>
-                        </th>
-                        <th>
-                            <fmt:message bundle="${labels}" 
-                                         key="rights.view.column.actions"/>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${result.rows}" var="row">
-                        <tr>
-                            <td>${row.rights_text}</td>
-                            <td>
-                                <fmt:message bundle="${labels}" scope="page"
-                                             key="rights.view.link.edit.text"
-                                             var="txt"/>
-                                <form method="post" action="pre-edit.jsp" class="margin-0-px">
-                                    <input type="hidden" name="id" 
-                                           value="${row.rights_id}"/>
-                                    <input type="hidden" name="rights" 
-                                           value="${row.rights_text}"/>
-                                    <input type="hidden" name="deleted" 
-                                           value="${row.rights_deleted}"/>
-                                    <input type="submit" value="${txt}"/>
-                                </form>
-                            </td>
-                        </tr>
-                        <c:set scope="page" var="count" value="${1 + count}"/>
-                    </c:forEach>
-                </tbody>
-                <tfoot>
-                    <fmt:message bundle="${labels}" 
-                                 key="rights.view.total.count"/> ${count}
-                </tfoot>
-                <tfoot>
-                    [<a href="pre-add.jsp"><fmt:message bundle="${labels}" 
-                                     key="rights.view.link.add.text"/></a>]
-                </tfoot>
-            </table>
+            <fmt:message bundle="${labels}" scope="page" var="edit"
+                        key="rights.view.btn.edit.text"/>
+            <fmt:message bundle="${labels}" scope="page" var="view"
+                        key="rights.view.btn.view.text"/>
+            <p>
+            <c:forEach items="${result.rows}" var="row">
+                <c:set scope="page" var="count" value="${1 + count}"/>
+            <div>
+                <form method="post" action="pre-edit.jsp" class="margin-0-px inline">
+                    <input type="hidden" name="id" 
+                           value="${row.rights_id}"/>
+                    <input type="hidden" name="rights" 
+                           value="${row.rights_text}"/>
+                    <input type="hidden" name="deleted" 
+                           value="${row.rights_deleted}"/>
+                    <input type="submit" value="${edit}" class="inline"/>
+                </form>
+                <form method="post" action="view-one.jsp" class="margin-0-px inline">
+                    <input type="hidden" name="id" 
+                           value="${row.rights_id}"/>
+                    <input type="hidden" name="rights" 
+                           value="${row.rights_text}"/>
+                    <input type="hidden" name="deleted" 
+                           value="${row.rights_deleted}"/>
+                    <input type="submit" value="${view}" class="inline"/>
+                </form>
+                <span class="bold-font">${row.rights_text}</span>
+            </div>
+            </c:forEach>
+            </p>
+
+            <p>
+                <fmt:message bundle="${labels}" 
+                             key="rights.view.total.count"/> ${count}
+            </p>
         </c:if>
 
         <c:if test="${null != error}">
-            <div class="error-font-color">
+            <p class="error-font-color">
                 <fmt:message key="server.error" bundle="${messages}"/>
                 ${error}
-            </div>
-        </c:if> 
+            </p>
+        </c:if>
+
+        <p>
+            [<a href="../../index.jsp"><fmt:message bundle="${labels}" 
+                         key="rights.view.link.cancel.text"/></a>]
+            [<a href="pre-add.jsp"><fmt:message bundle="${labels}" 
+                                     key="rights.view.link.add.text"/></a>]
+        </p>
     </body>
 </html>

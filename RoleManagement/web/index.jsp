@@ -3,9 +3,12 @@
 <html>
     <head>
         <title><fmt:message bundle="${labels}" key="index.title"/></title>
+        <link rel="stylesheet" href="css/style.css"/>
     </head>
     <body>
-        <fmt:message bundle="${labels}" key="index.table.title"/>
+        <p class="bold-font">
+            <fmt:message bundle="${labels}" key="index.table.title"/>
+        </p>
         <ul>
             <li>
                 <a href="jsp/rights/view-all.jsp">
