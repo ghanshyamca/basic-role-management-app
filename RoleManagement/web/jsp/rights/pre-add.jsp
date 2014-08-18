@@ -36,25 +36,25 @@
                             </div>
                         </td>
                         <td>
-                            <c:if test='${null == param.status && null == rights_status_error}'>
+                            <c:if test='${null == param.deleted && null == rights_status_error}'>
                                 <c:set var="check" value='checked="checked"' scope="page"/>
                             </c:if>
-                            <c:if test='${null != param.status && "true" == param.status}'>
+                            <c:if test='${null != param.deleted && 0 == param.deleted}'>
                                 <c:set var="check" value='checked="checked"' scope="page"/>
                             </c:if>
-                            <input type="radio" name="status" value="true" 
-                                   id="status1" ${check}/>
-                            <label for="status1">
+                            <input type="radio" name="deleted" value="0" 
+                                   id="status0" ${check}/>
+                            <label for="status0">
                                 <fmt:message bundle="${labels}" 
                                              key="rights.add.rights.status.active"/>
                             </label>
                             <c:remove scope="page" var="check"/>
-                            <c:if test='${null != param.status && "false" == param.status}'>
+                            <c:if test='${null != param.deleted && 1 == param.deleted}'>
                                 <c:set var="check" value='checked="checked"' scope="page"/>
                             </c:if>
-                            <input type="radio" name="status" value="false" 
-                                   id="status0" ${check}/>
-                            <label for="status0">
+                            <input type="radio" name="deleted" value="1" 
+                                   id="status1" ${check}/>
+                            <label for="status1">
                                 <fmt:message bundle="${labels}" 
                                              key="rights.add.rights.status.inactive"/>
                             </label>

@@ -39,9 +39,9 @@
                         <c:if test='${null != param.deleted && 0 == param.deleted}'>
                             <c:set var="check" value='checked="checked"' scope="page"/>
                         </c:if>
-                        <input type="radio" name="status" value="true" 
-                               id="status1" ${check}/>
-                        <label for="status1">
+                        <input type="radio" name="deleted" value="0" 
+                               id="status0" ${check}/>
+                        <label for="status0">
                             <fmt:message bundle="${labels}" 
                                          key="rights.edit.rights.status.active"/>
                         </label>
@@ -49,9 +49,9 @@
                         <c:if test='${null != param.deleted && 1 == param.deleted}'>
                             <c:set var="check" value='checked="checked"' scope="page"/>
                         </c:if>
-                        <input type="radio" name="status" value="false" 
-                               id="status0" ${check}/>
-                        <label for="status0">
+                        <input type="radio" name="deleted" value="false" 
+                               id="status1" ${check}/>
+                        <label for="status1">
                             <fmt:message bundle="${labels}" 
                                          key="rights.edit.rights.status.inactive"/>
                         </label>

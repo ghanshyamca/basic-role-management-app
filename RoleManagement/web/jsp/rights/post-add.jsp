@@ -9,7 +9,7 @@
                  scope="request" var="rights_name_error"/>
 </c:if>
 
-<c:if test='${null == param.status || "" == param.status.trim()}'>
+<c:if test='${null == param.deleted || "" == param.deleted.trim()}'>
     <c:set scope="page" value="false" var="proceed"/>
     <fmt:message bundle="${messages}" key="rights.add.status.empty" 
                  scope="request" var="rights_status_error"/>
@@ -40,13 +40,11 @@
 
 <c:if test="${proceed}">
 
-    <c:set scope="page" value='${"false" == param.status}' var="deleted"/>
-
     <c:catch var="error">
         <sql:update dataSource="${jdbcDsn}" scope="page" var="result">
             insert into rights_tbl (rights_text, rights_deleted) values (?, ?)
             <sql:param value="${param.rights}"/>
-            <sql:param value="${deleted}"/>
+            <sql:param value="${param.deleted}"/>
         </sql:update>
     </c:catch>
 
