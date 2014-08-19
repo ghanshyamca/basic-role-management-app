@@ -18,7 +18,9 @@
                 select * from modules_tbl where modules_deleted = 0
             </sql:query>
             <sql:query dataSource="${jdbcDsn}" scope="page" var="childs">
-                select * from modules_tbl where modules_deleted = 0
+                select p.* from modules_tbl p where p.modules_deleted = 0
+                and p.modules_id not in(select c.modules_child_id from
+                modules_hierarchy_tbl c)
             </sql:query>
         </c:catch>
         <c:if test="${null == error}">
@@ -56,7 +58,7 @@
             </form>
         </c:if>
         <c:if test="${null != error}">
-            <p class="error-font-color">
+            <p class="error-font-color bold-font">
                 <fmt:message bundle="${messages}" key="server.error"/>
             </p>
         </c:if>
