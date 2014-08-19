@@ -35,11 +35,17 @@
                         <option value="-1"><fmt:message bundle="${labels}" 
                                      key="modules.hierarchy.add.select"/></option>
                         <c:forEach items="${parents.rows}" var="parent">
-                            <option value="${parent.modules_id}">
+                            <c:if test="${parent.modules_id == param.parent}">
+                                <c:set scope="page" value='selected="selected"'
+                                       var="selected"/>
+                            </c:if>
+                            <option value="${parent.modules_id}" ${selected}>
                                 ${parent.modules_text}
                             </option>
+                            <c:remove scope="page" var="selected"/>
                         </c:forEach>
                     </select>
+                    <span class="error-font-color">${parent_error}</span>
                 </div>
                 </p>
                 <p>
@@ -52,11 +58,17 @@
                         <option value="-1"><fmt:message bundle="${labels}" 
                                      key="modules.hierarchy.add.select"/></option>
                         <c:forEach items="${childs.rows}" var="child">
-                            <option value="${child.modules_id}">
+                            <c:if test="${child.modules_id == param.child}">
+                                <c:set scope="page" value='selected="selected"'
+                                       var="selected"/>
+                            </c:if>
+                            <option value="${child.modules_id}" ${selected}>
                                 ${child.modules_text}
                             </option>
+                            <c:remove scope="page" var="selected"/>
                         </c:forEach>
                     </select>
+                    <span class="error-font-color">${child_error}</span>
                 </div>
                 </p>
                 <p>
