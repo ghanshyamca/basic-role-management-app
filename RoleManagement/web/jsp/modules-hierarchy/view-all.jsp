@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="../../css/style.css"/>
     </head>
     <body>
+        <jsp:directive.include file="../view-all-status-filter.jsp"/>
         <c:catch var="error">
             <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
                 select * from modules_hierarchy_tbl
@@ -38,5 +39,6 @@
                 <fmt:message key="server.error" bundle="${messages}"/>
             </p>
         </c:if>
+        <jsp:directive.include file="../view-all-status-filter.jsp"/>
     </body>
 </html>
