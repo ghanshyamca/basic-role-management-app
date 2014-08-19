@@ -66,7 +66,6 @@
         <c:if test="${null != error}">
             <p class="error-font-color">
                 <fmt:message key="server.error" bundle="${messages}"/>
-                ${error}
             </p>
         </c:if>
 

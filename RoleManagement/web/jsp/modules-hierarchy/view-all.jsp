@@ -1,17 +1,42 @@
-<%-- 
-    Document   : view-all
-    Created on : Aug 19, 2014, 2:08:06 PM
-    Author     : Administrator
---%>
+<jsp:directive.include file="../jdbc-dsn.jsp"/>
+<jsp:directive.include file="../resource-bundles.jsp"/>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>
+            <fmt:message bundle="${labels}" key="modules.hierarchy.view.page.title"/>
+        </title>
+        <link rel="stylesheet" href="../../css/style.css"/>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <c:catch var="error">
+            <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
+                select * from modules_hierarchy_tbl
+            </sql:query>
+        </c:catch>
+
+        <c:if test="${null == error}">
+            <c:set scope="page" var="count" value="0"/>
+            <fmt:message bundle="${labels}" scope="page" var="edit"
+                        key="modules.hierarchy.view.edit"/>
+            <fmt:message bundle="${labels}" scope="page" var="view"
+                        key="modules.hierarchy.view.view"/>
+            <p>
+            <c:forEach items="${result.rows}" var="row">
+                <c:set scope="page" var="count" value="${1 + count}"/>
+            </c:forEach>
+            </p>
+
+            <p>
+                <fmt:message bundle="${labels}" 
+                             key="modules.hierarchy.view.total.count"/> ${count}
+            </p>
+        </c:if>
+
+        <c:if test="${null != error}">
+            <p class="error-font-color">
+                <fmt:message key="server.error" bundle="${messages}"/>
+            </p>
+        </c:if>
     </body>
 </html>
