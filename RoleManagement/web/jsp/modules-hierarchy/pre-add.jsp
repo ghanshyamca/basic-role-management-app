@@ -32,6 +32,8 @@
                 </div>
                 <div>
                     <select name="parent">
+                        <option value="-1"><fmt:message bundle="${labels}" 
+                                     key="modules.hierarchy.add.select"/></option>
                         <c:forEach items="${parents.rows}" var="parent">
                             <option value="${parent.modules_id}">
                                 ${parent.modules_text}
@@ -47,6 +49,8 @@
                 </div>
                 <div>
                     <select name="child">
+                        <option value="-1"><fmt:message bundle="${labels}" 
+                                     key="modules.hierarchy.add.select"/></option>
                         <c:forEach items="${childs.rows}" var="child">
                             <option value="${child.modules_id}">
                                 ${child.modules_text}
@@ -54,6 +58,13 @@
                         </c:forEach>
                     </select>
                 </div>
+                </p>
+                <p>
+                    [<a href="view-all.jsp"><fmt:message bundle="${labels}"
+                                 key="modules.hierarchy.add.cancel"/></a>]
+                    <fmt:message bundle="${labels}" scope="page" var="txt"
+                                 key="modules.hierarchy.add.save"/>
+                    <input type="submit" value="${txt}"/>
                 </p>
             </form>
         </c:if>
