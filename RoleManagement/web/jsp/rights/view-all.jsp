@@ -7,31 +7,7 @@
         <link rel="stylesheet" href="../../css/style.css"/>
     </head>
     <body>
-        
-        <p>
-            [<a href="../../index.jsp"><fmt:message bundle="${labels}" 
-                         key="rights.view.link.cancel.text"/></a>]
-            [<a href="pre-add.jsp"><fmt:message bundle="${labels}" 
-                                     key="rights.view.link.add.text"/></a>]
-            <c:if test="${null != param.v}">
-                <c:set scope="page" value='href="view-all.jsp"' var="href"/>
-            </c:if>
-            [<a ${href}><fmt:message bundle="${labels}" 
-                                     key="rights.view.rights.all"/></a> |
-            <c:remove scope="page" var="href"/>
-            <c:if test="${0 != param.v}">
-                <c:set scope="page" value='href="view-all.jsp?v=0"' var="href"/>
-            </c:if>
-            <a ${href}><fmt:message bundle="${labels}" 
-                                     key="rights.view.rights.active"/></a> |
-            <c:remove scope="page" var="href"/>
-            <c:if test="${1 != param.v}">
-                <c:set scope="page" value='href="view-all.jsp?v=1"' var="href"/>
-            </c:if>
-            <a ${href}><fmt:message bundle="${labels}" 
-                                     key="rights.view.rights.inactive"/></a>]
-            <c:remove scope="page" var="href"/>
-        </p>
+        <jsp:directive.include file="../view-all-status-filter.jsp"/>
 
         <c:catch var="error">
             <c:if test="${null == param.v}">
@@ -89,33 +65,9 @@
         <c:if test="${null != error}">
             <p class="error-font-color">
                 <fmt:message key="server.error" bundle="${messages}"/>
-                ${error}
             </p>
         </c:if>
 
-        <p>
-            [<a href="../../index.jsp"><fmt:message bundle="${labels}" 
-                         key="rights.view.link.cancel.text"/></a>]
-            [<a href="pre-add.jsp"><fmt:message bundle="${labels}" 
-                                     key="rights.view.link.add.text"/></a>]
-            <c:if test="${null != param.v}">
-                <c:set scope="page" value='href="view-all.jsp"' var="href"/>
-            </c:if>
-            [<a ${href}><fmt:message bundle="${labels}" 
-                                     key="rights.view.rights.all"/></a> |
-            <c:remove scope="page" var="href"/>
-            <c:if test="${0 != param.v}">
-                <c:set scope="page" value='href="view-all.jsp?v=0"' var="href"/>
-            </c:if>
-            <a ${href}><fmt:message bundle="${labels}" 
-                                     key="rights.view.rights.active"/></a> |
-            <c:remove scope="page" var="href"/>
-            <c:if test="${1 != param.v}">
-                <c:set scope="page" value='href="view-all.jsp?v=1"' var="href"/>
-            </c:if>
-            <a ${href}><fmt:message bundle="${labels}" 
-                                     key="rights.view.rights.inactive"/></a>]
-            <c:remove scope="page" var="href"/>
-        </p>
+        <jsp:directive.include file="../view-all-status-filter.jsp"/>
     </body>
 </html>

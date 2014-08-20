@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="jsp/modules-hierarchy/view-all.jsp">
                     <fmt:message bundle="${labels}" key="index.list.modules.hierarchy"/>
                 </a>
             </li>
