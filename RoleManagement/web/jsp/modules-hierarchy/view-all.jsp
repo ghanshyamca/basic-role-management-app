@@ -12,12 +12,15 @@
         <jsp:directive.include file="../view-all-status-filter.jsp"/>
         <c:catch var="error">
             <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
-                select mp.modules_text as p, mc.modules_text as c
-                from modules_hierarchy_tbl mh
-                 left join modules_tbl mp on
+                select t.* from (
+                  select mp.modules_text as parent_text,
+                  mc.modules_text as child_text
+                  from modules_hierarchy_tbl mh
+                  left join modules_tbl mp on
                    mh.modules_parent_id = mp.modules_id
-                 left join modules_tbl mc on
+                  left join modules_tbl mc on
                    mh.modules_child_id = mc.modules_id
+                ) t
             </sql:query>
         </c:catch>
 
@@ -31,7 +34,13 @@
             <c:forEach items="${result.rows}" var="row">
                 <c:set scope="page" var="count" value="${1 + count}"/>
             <div>
-                <span>${row.p}</span><span>${row.c}</span>
+                <ul>
+                    <li>${row.parent_text}
+                        <ul>
+                            <li>${row.child_text}</li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
             </c:forEach>
             </p>
