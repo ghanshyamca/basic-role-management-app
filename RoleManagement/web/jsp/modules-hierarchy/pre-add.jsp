@@ -15,11 +15,11 @@
         </p>
         <c:catch var="error">
             <sql:query dataSource="${jdbcDsn}" scope="page" var="parents">
-                select * from modules_tbl where modules_deleted = 0
+                select * from modules_tbl
             </sql:query>
             <sql:query dataSource="${jdbcDsn}" scope="page" var="childs">
-                select p.* from modules_tbl p where p.modules_deleted = 0
-                and p.modules_id not in(select c.modules_child_id from
+                select p.* from modules_tbl p where
+                 p.modules_id not in(select c.modules_child_id from
                 modules_hierarchy_tbl c)
             </sql:query>
         </c:catch>

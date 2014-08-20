@@ -53,13 +53,15 @@
             <c:forEach items="${result.rows}" var="row">
                 <c:set scope="page" var="count" value="${1 + count}"/>
             <div>
-                <ul>
-                    <li>${row.parent_text}
-                        <ul>
-                            <li>${row.child_text}</li>
-                        </ul>
-                    </li>
-                </ul>
+                <form action="pre-edit.jsp" method="post" class="margin-0-px inline">
+                    <input type="submit" value="${edit}" class="inline"/>
+                </form>
+                <form action="view-one.jsp" method="post" class="margin-0-px inline">
+                    <input type="submit" value="${view}" class="inline"/>
+                </form>
+                ${row.parent_text}
+                <span class="bold-font">&raquo;</span>
+                ${row.child_text}
             </div>
             </c:forEach>
             </p>
