@@ -11,17 +11,36 @@
     <body>
         <jsp:directive.include file="../view-all-status-filter.jsp"/>
         <c:catch var="error">
-            <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
-                select t.* from (
-                  select mp.modules_text as parent_text,
-                  mc.modules_text as child_text
-                  from modules_hierarchy_tbl mh
-                  left join modules_tbl mp on
-                   mh.modules_parent_id = mp.modules_id
-                  left join modules_tbl mc on
-                   mh.modules_child_id = mc.modules_id
-                ) t
-            </sql:query>
+            <c:if test="${null == param.v}">
+                <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
+                    select t.* from (
+                      select mp.modules_text as parent_text,
+                      mc.modules_text as child_text
+                      from modules_hierarchy_tbl mh
+                      inner join modules_tbl mp on
+                       mh.modules_parent_id = mp.modules_id
+                      inner join modules_tbl mc on
+                       mh.modules_child_id = mc.modules_id
+                    ) t
+                </sql:query>
+            </c:if> 
+            <c:if test="${null != param.v}">
+                <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
+                    select t.* from (
+                      select mp.modules_text as parent_text,
+                      mc.modules_text as child_text
+                      from modules_hierarchy_tbl mh
+                      inner join modules_tbl mp on
+                       mh.modules_parent_id = mp.modules_id
+                      inner join modules_tbl mc on
+                       mh.modules_child_id = mc.modules_id
+                      where mp.modules_deleted = ?
+                       and mc.modules_deleted = ?
+                    ) t
+                    <sql:param value="${param.v}"/>
+                    <sql:param value="${param.v}"/>
+                </sql:query>
+            </c:if>
         </c:catch>
 
         <c:if test="${null == error}">
