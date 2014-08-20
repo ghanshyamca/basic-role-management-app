@@ -15,7 +15,9 @@
                 <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
                     select t.* from (
                       select mp.modules_text as parent_text,
-                      mc.modules_text as child_text
+                      mc.modules_text as child_text,
+                      mp.modules_id as parent_id,
+                      mc.modules_id as child_id
                       from modules_hierarchy_tbl mh
                       inner join modules_tbl mp on
                        mh.modules_parent_id = mp.modules_id
@@ -28,7 +30,9 @@
                 <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
                     select t.* from (
                       select mp.modules_text as parent_text,
-                      mc.modules_text as child_text
+                      mc.modules_text as child_text,
+                      mp.modules_id as parent_id,
+                      mc.modules_id as child_id
                       from modules_hierarchy_tbl mh
                       inner join modules_tbl mp on
                        mh.modules_parent_id = mp.modules_id
@@ -54,9 +58,13 @@
                 <c:set scope="page" var="count" value="${1 + count}"/>
             <div>
                 <form action="pre-edit.jsp" method="post" class="margin-0-px inline">
+                    <input type="hidden" name="parent" value="${row.parent_id}"/>
+                    <input type="hidden" name="child" value="${row.child_id}"/>
                     <input type="submit" value="${edit}" class="inline"/>
                 </form>
                 <form action="view-one.jsp" method="post" class="margin-0-px inline">
+                    <input type="hidden" name="parent" value="${row.parent_id}"/>
+                    <input type="hidden" name="child" value="${row.child_id}"/>
                     <input type="submit" value="${view}" class="inline"/>
                 </form>
                 ${row.parent_text}
