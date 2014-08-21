@@ -1,5 +1,5 @@
-<%@taglib prefix="c" uri="/WEB-INF/tld/c.tld"%>
 <jsp:directive.include file="../resource-bundles.jsp"/>
+<jsp:directive.include file="../jdbc-dsn.jsp"/>
 
 <html>
     <head>
@@ -30,10 +30,12 @@
                     select p.* from modules_tbl p where
                      p.modules_id not in(select c.modules_child_id from
                     modules_hierarchy_tbl c)
+                     or p.modules_id = ?
+                     <sql:param value="${param.child}"/>
                 </sql:query>
             </c:catch>
             <c:if test="${null == error}">
-                <form method="post" action="post-add.jsp">
+                <form method="post" action="post-edit.jsp">
                     <p>
                     <div class="bold-font">
                         <fmt:message bundle="${labels}" 
