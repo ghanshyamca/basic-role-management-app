@@ -58,13 +58,13 @@
                 <c:set scope="page" var="count" value="${1 + count}"/>
             <div>
                 <form action="pre-edit.jsp" method="post" class="margin-0-px inline">
-                    <input type="hidden" name="parent" value="${row.parent_id}"/>
-                    <input type="hidden" name="child" value="${row.child_id}"/>
+                    <input type="hidden" name="oldParent" value="${row.parent_id}"/>
+                    <input type="hidden" name="oldChild" value="${row.child_id}"/>
                     <input type="submit" value="${edit}" class="inline"/>
                 </form>
                 <form action="view-one.jsp" method="post" class="margin-0-px inline">
-                    <input type="hidden" name="parent" value="${row.parent_id}"/>
-                    <input type="hidden" name="child" value="${row.child_id}"/>
+                    <input type="hidden" name="oldParent" value="${row.parent_id}"/>
+                    <input type="hidden" name="oldChild" value="${row.child_id}"/>
                     <input type="submit" value="${view}" class="inline"/>
                 </form>
                 ${row.parent_text}
