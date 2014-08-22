@@ -35,12 +35,12 @@
                     <p>
                     <div class="bold-font">
                         <fmt:message bundle="${labels}" 
-                                     key="modules.hierarchy.edit.parent"/>
+                                     key="modules.hierarchy.view.one.parent"/>
                     </div>
                     <div>
                         <select disabled="disabled">
                             <option value="-1"><fmt:message bundle="${labels}" 
-                                         key="modules.hierarchy.edit.select"/></option>
+                                         key="modules.hierarchy.view.one.select"/></option>
                             <c:forEach items="${parents.rows}" var="parent">
                                 <c:if test="${parent.modules_id == parentId}">
                                     <c:set scope="page" value='selected="selected"'
@@ -55,12 +55,12 @@
                     <p>
                     <div class="bold-font">
                         <fmt:message bundle="${labels}" 
-                                     key="modules.hierarchy.edit.child"/>
+                                     key="modules.hierarchy.view.one.child"/>
                     </div>
                     <div>
                         <select disabled="disabled">
                             <option value="-1"><fmt:message bundle="${labels}" 
-                                         key="modules.hierarchy.edit.select"/></option>
+                                         key="modules.hierarchy.view.one.select"/></option>
                             <c:forEach items="${childs.rows}" var="child">
                                 <c:if test="${child.modules_id == childId}">
                                     <c:set scope="page" value='selected="selected"'
@@ -74,9 +74,9 @@
                     </p>
                     <p>
                         [<a href="view-all.jsp"><fmt:message bundle="${labels}"
-                                     key="modules.hierarchy.edit.cancel"/></a>]
+                                     key="modules.hierarchy.view.one.cancel"/></a>]
                         <fmt:message bundle="${labels}" scope="page" var="txt"
-                                     key="modules.hierarchy.edit.update"/>
+                                     key="modules.hierarchy.view.one.edit"/>
                         <input type="submit" value="${txt}"/>
                     </p>
                 </form>
@@ -90,11 +90,11 @@
         <c:if test="${!proceed}">
             <p class="error-font-color">
                 <fmt:message bundle="${messages}" 
-                             key="modules.hierarchy.edit.info.invalid"/>
+                             key="modules.hierarchy.view.one.info.invalid"/>
             </p>
             <p>
                 [<a href="view-all.jsp"><fmt:message bundle="${labels}" 
-                             key="modules.hierarchy.edit.cancel"/></a>]
+                             key="modules.hierarchy.view.one.cancel"/></a>]
             </p>
         </c:if>
     </body>
