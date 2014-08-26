@@ -32,7 +32,7 @@
                         <td>
                             <div class="bold-font">
                             <fmt:message bundle="${labels}" 
-                                         key="rights.add.rights.status"/>
+                                         key="common.status"/>
                             </div>
                         </td>
                         <td>
@@ -46,7 +46,7 @@
                                    id="status0" ${check}/>
                             <label for="status0">
                                 <fmt:message bundle="${labels}" 
-                                             key="rights.add.rights.status.active"/>
+                                             key="common.active"/>
                             </label>
                             <c:remove scope="page" var="check"/>
                             <c:if test='${null != param.deleted && 1 == param.deleted}'>
@@ -56,7 +56,7 @@
                                    id="status1" ${check}/>
                             <label for="status1">
                                 <fmt:message bundle="${labels}" 
-                                             key="rights.add.rights.status.inactive"/>
+                                             key="common.inactive"/>
                             </label>
                         </td>
                         <td>
@@ -68,11 +68,11 @@
                     <tr>
                         <td>
                             [<a href="view-all.jsp"><fmt:message bundle="${labels}" 
-                                             key="rights.add.link.cancel.text"/></a>]
+                                             key="common.cancel"/></a>]
                         </td>
                         <td>
                             <fmt:message bundle="${labels}" 
-                                         key="rights.add.btn.create.text" 
+                                         key="common.create" 
                                          scope="page" var="txt"/>
                             <input type="submit" value="${txt}"/>
                         </td>

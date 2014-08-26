@@ -40,7 +40,7 @@
                 <p>
                     <div class="bold-font">
                         <fmt:message bundle="${labels}" 
-                                     key="rights.view.one.rights.status"/>
+                                     key="common.status"/>
                     </div>
                     <div>
                         <c:if test='${null != param.deleted && 0 == param.deleted}'>
@@ -50,7 +50,7 @@
                                id="status0" ${check} disabled="disabled"/>
                         <label for="status0">
                             <fmt:message bundle="${labels}" 
-                                         key="rights.view.one.rights.status.active"/>
+                                         key="common.active"/>
                         </label>
                         <c:remove scope="page" var="check"/>
                         <c:if test='${null != param.deleted && 1 == param.deleted}'>
@@ -60,16 +60,16 @@
                                id="status1" ${check} disabled="disabled"/>
                         <label for="status1">
                             <fmt:message bundle="${labels}" 
-                                         key="rights.view.one.rights.status.inactive"/>
+                                         key="common.inactive"/>
                         </label>
                         <span class="error-font-color">${rights_status_error}</span>
                     </div>
                 </p>
                 <p>
                     [<a href="view-all.jsp"><fmt:message bundle="${labels}" 
-                         key="rights.view.one.link.cancel.text"/></a>]
+                         key="common.cancel"/></a>]
                     <fmt:message bundle="${labels}" scope="page" var="txt" 
-                                key="rights.view.one.btn.edit.text" />
+                                key="common.edit" />
                     <input type="submit" value="${txt}"/>
                 </p>
             </form>
@@ -81,7 +81,7 @@
             </p>
             <p>
                 [<a href="view-all.jsp"><fmt:message bundle="${labels}" 
-                             key="rights.view.one.link.cancel.text"/></a>]
+                             key="common.cancel"/></a>]
             </p>
         </c:if>
     </body>

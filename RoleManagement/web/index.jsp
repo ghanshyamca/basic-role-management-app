@@ -26,7 +26,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="jsp/user-groups/view-all.jsp">
                     <fmt:message bundle="${labels}" key="index.list.user.groups"/>
                 </a>
             </li>

@@ -50,9 +50,9 @@
         <c:if test="${null == error}">
             <c:set scope="page" var="count" value="0"/>
             <fmt:message bundle="${labels}" scope="page" var="edit"
-                        key="modules.hierarchy.view.edit"/>
+                        key="common.edit"/>
             <fmt:message bundle="${labels}" scope="page" var="view"
-                        key="modules.hierarchy.view.view"/>
+                        key="common.view"/>
             <p>
             <c:forEach items="${result.rows}" var="row">
                 <c:set scope="page" var="count" value="${1 + count}"/>
@@ -67,9 +67,10 @@
                     <input type="hidden" name="oldChild" value="${row.child_id}"/>
                     <input type="submit" value="${view}" class="inline"/>
                 </form>
-                ${row.parent_text}
-                <span class="bold-font">&raquo;</span>
-                ${row.child_text}
+                <span class="bold-font">
+                    ${row.parent_text} &raquo; ${row.child_text}
+                </span>
+                
             </div>
             </c:forEach>
             </p>

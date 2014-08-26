@@ -26,9 +26,9 @@
         <c:if test="${null == error}">
             <c:set scope="page" var="count" value="0"/>
             <fmt:message bundle="${labels}" scope="page" var="edit"
-                        key="rights.view.btn.edit.text"/>
+                        key="common.edit"/>
             <fmt:message bundle="${labels}" scope="page" var="view"
-                        key="rights.view.btn.view.text"/>
+                        key="common.view"/>
             <p>
             <c:forEach items="${result.rows}" var="row">
                 <c:set scope="page" var="count" value="${1 + count}"/>

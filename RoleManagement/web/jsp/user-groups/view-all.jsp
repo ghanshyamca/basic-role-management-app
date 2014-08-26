@@ -3,22 +3,22 @@
 
 <html>
     <head>
-        <title><fmt:message bundle="${labels}" key="modules.view.title"/></title>
+        <title>
+            <fmt:message bundle="${labels}" key="user.groups.view.page.title"/>
+        </title>
         <link rel="stylesheet" href="../../css/style.css"/>
     </head>
     <body>
-
         <jsp:directive.include file="../view-all-status-filter.jsp"/>
-
         <c:catch var="error">
             <c:if test="${null == param.v}">
                 <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
-                    select * from modules_tbl
+                    select * from user_group_tbl
                 </sql:query>
-            </c:if>
+            </c:if> 
             <c:if test="${null != param.v}">
                 <sql:query dataSource="${jdbcDsn}" var="result" scope="page">
-                    select * from modules_tbl where modules_deleted = ?
+                    select * from user_group_tbl where user_group_deleted = ?
                     <sql:param value="${param.v}"/>
                 </sql:query>
             </c:if>
@@ -34,32 +34,22 @@
             <c:forEach items="${result.rows}" var="row">
                 <c:set scope="page" var="count" value="${1 + count}"/>
             <div>
-                <form method="post" action="pre-edit.jsp" class="margin-0-px inline">
-                    <input type="hidden" name="id" 
-                           value="${row.modules_id}"/>
-                    <input type="hidden" name="title" 
-                           value="${row.modules_text}"/>
-                    <input type="hidden" name="deleted" 
-                           value="${row.modules_deleted}"/>
+                <form action="pre-edit.jsp" method="post" class="margin-0-px inline">
                     <input type="submit" value="${edit}" class="inline"/>
                 </form>
-                <form method="post" action="view-one.jsp" class="margin-0-px inline">
-                    <input type="hidden" name="id" 
-                           value="${row.modules_id}"/>
-                    <input type="hidden" name="title" 
-                           value="${row.modules_text}"/>
-                    <input type="hidden" name="deleted" 
-                           value="${row.modules_deleted}"/>
+                <form action="view-one.jsp" method="post" class="margin-0-px inline">
                     <input type="submit" value="${view}" class="inline"/>
                 </form>
-                <span class="bold-font">${row.modules_text}</span>
+                <span class="bold-font">
+                    ${row.user_group_text}
+                </span>
             </div>
             </c:forEach>
             </p>
 
             <p>
                 <fmt:message bundle="${labels}" 
-                             key="modules.view.total.count"/> ${count}
+                             key="user.groups.view.total.count"/> ${count}
             </p>
         </c:if>
 
@@ -68,7 +58,6 @@
                 <fmt:message key="server.error" bundle="${messages}"/>
             </p>
         </c:if>
-
         <jsp:directive.include file="../view-all-status-filter.jsp"/>
     </body>
 </html>

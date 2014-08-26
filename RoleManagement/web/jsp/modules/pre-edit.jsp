@@ -40,7 +40,7 @@
                 <p>
                     <div class="bold-font">
                         <fmt:message bundle="${labels}" 
-                                     key="modules.edit.status"/>
+                                     key="common.status"/>
                     </div>
                     <div>
                         <c:if test='${null != param.deleted && 0 == param.deleted}'>
@@ -50,7 +50,7 @@
                                id="status0" ${check}/>
                         <label for="status0">
                             <fmt:message bundle="${labels}" 
-                                         key="modules.edit.active"/>
+                                         key="common.active"/>
                         </label>
                         <c:remove scope="page" var="check"/>
                         <c:if test='${null != param.deleted && 1 == param.deleted}'>
@@ -60,16 +60,16 @@
                                id="status1" ${check}/>
                         <label for="status1">
                             <fmt:message bundle="${labels}" 
-                                         key="modules.edit.inactive"/>
+                                         key="common.inactive"/>
                         </label>
                         <span class="error-font-color">${status_error}</span>
                     </div>
                 </p>
                 <p>
                     [<a href="view-all.jsp"><fmt:message bundle="${labels}" 
-                         key="modules.edit.cancel"/></a>]
+                         key="common.cancel"/></a>]
                     <fmt:message bundle="${labels}" scope="page" var="txt" 
-                                key="modules.edit.update" />
+                                key="common.update" />
                     <input type="submit" value="${txt}"/>
                 </p>
             </form>
@@ -80,7 +80,7 @@
             </p>
             <p>
                 [<a href="view-all.jsp"><fmt:message bundle="${labels}" 
-                             key="modules.edit.cancel"/></a>]
+                             key="common.cancel"/></a>]
             </p>
         </c:if>
     </body>

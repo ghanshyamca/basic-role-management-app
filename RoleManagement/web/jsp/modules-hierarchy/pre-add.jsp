@@ -33,7 +33,7 @@
                 <div>
                     <select name="parent">
                         <option value="-1"><fmt:message bundle="${labels}" 
-                                     key="modules.hierarchy.add.select"/></option>
+                                     key="common.select"/></option>
                         <c:forEach items="${parents.rows}" var="parent">
                             <c:if test="${parent.modules_id == param.parent}">
                                 <c:set scope="page" value='selected="selected"'
@@ -56,7 +56,7 @@
                 <div>
                     <select name="child">
                         <option value="-1"><fmt:message bundle="${labels}" 
-                                     key="modules.hierarchy.add.select"/></option>
+                                     key="common.select"/></option>
                         <c:forEach items="${childs.rows}" var="child">
                             <c:if test="${child.modules_id == param.child}">
                                 <c:set scope="page" value='selected="selected"'
@@ -73,9 +73,9 @@
                 </p>
                 <p>
                     [<a href="view-all.jsp"><fmt:message bundle="${labels}"
-                                 key="modules.hierarchy.add.cancel"/></a>]
+                                 key="common.cancel"/></a>]
                     <fmt:message bundle="${labels}" scope="page" var="txt"
-                                 key="modules.hierarchy.add.save"/>
+                                 key="common.create"/>
                     <input type="submit" value="${txt}"/>
                 </p>
             </form>

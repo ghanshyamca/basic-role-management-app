@@ -27,7 +27,7 @@
             <p>
                 <div class="bold-font">
                     <fmt:message bundle="${labels}" 
-                                 key="modules.add.status"/>
+                                 key="common.status"/>
                 </div>
                 <div>
                     <c:if test='${null == param.deleted && null == status_error}'>
@@ -39,7 +39,7 @@
                     <input type="radio" name="deleted" value="0" 
                            id="status0" ${check}/>
                     <label for="status0">
-                        <fmt:message bundle="${labels}" key="modules.add.active"/>
+                        <fmt:message bundle="${labels}" key="common.active"/>
                     </label>
                     <c:remove scope="page" var="check"/>
                     <c:if test='${null != param.deleted && 1 == param.deleted}'>
@@ -49,16 +49,16 @@
                            id="status1" ${check}/>
                     <label for="status1">
                         <fmt:message bundle="${labels}" 
-                                     key="modules.add.inactive"/>
+                                     key="common.inactive"/>
                     </label>
                     <span class="error-font-color">${status_error}</span>
                 </div>
             </p>
             <p>
                 [<a href="view-all.jsp"><fmt:message bundle="${labels}" 
-                     key="modules.add.cancel"/></a>]
+                     key="common.cancel"/></a>]
                 <fmt:message bundle="${labels}" scope="page" var="txt" 
-                            key="modules.add.save" />
+                            key="common.create" />
                 <input type="submit" value="${txt}"/>
             </p>
         </form>

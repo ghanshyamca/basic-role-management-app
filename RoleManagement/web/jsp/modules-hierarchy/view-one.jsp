@@ -40,7 +40,7 @@
                     <div>
                         <select disabled="disabled">
                             <option value="-1"><fmt:message bundle="${labels}" 
-                                         key="modules.hierarchy.view.one.select"/></option>
+                                         key="common.select"/></option>
                             <c:forEach items="${parents.rows}" var="parent">
                                 <c:if test="${parent.modules_id == parentId}">
                                     <c:set scope="page" value='selected="selected"'
@@ -60,7 +60,7 @@
                     <div>
                         <select disabled="disabled">
                             <option value="-1"><fmt:message bundle="${labels}" 
-                                         key="modules.hierarchy.view.one.select"/></option>
+                                         key="common.select"/></option>
                             <c:forEach items="${childs.rows}" var="child">
                                 <c:if test="${child.modules_id == childId}">
                                     <c:set scope="page" value='selected="selected"'
@@ -74,9 +74,9 @@
                     </p>
                     <p>
                         [<a href="view-all.jsp"><fmt:message bundle="${labels}"
-                                     key="modules.hierarchy.view.one.cancel"/></a>]
+                                     key="common.cancel"/></a>]
                         <fmt:message bundle="${labels}" scope="page" var="txt"
-                                     key="modules.hierarchy.view.one.edit"/>
+                                     key="common.edit"/>
                         <input type="submit" value="${txt}"/>
                     </p>
                 </form>
@@ -94,7 +94,7 @@
             </p>
             <p>
                 [<a href="view-all.jsp"><fmt:message bundle="${labels}" 
-                             key="modules.hierarchy.view.one.cancel"/></a>]
+                             key="common.cancel"/></a>]
             </p>
         </c:if>
     </body>
