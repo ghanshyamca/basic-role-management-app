@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="/WEB-INF/tld/c.tld"%>
 <jsp:directive.include file="../resource-bundles.jsp"/>
+<jsp:directive.include file="../delete-status.jsp"/>
 
 <html>
     <head>
@@ -32,8 +33,8 @@
                                      key="rights.view.one.rights.name"/>
                     </div>
                     <div>
-                        <input type="text" name="rights" value="${param.rights}" 
-                               size="20" maxlength="20" disabled="disabled"/>
+                        <input type="text" value="${param.rights}" 
+                               disabled="disabled"/>
                         <span class="error-font-color">${rights_name_error}</span>
                     </div>
                 </p>
@@ -43,22 +44,20 @@
                                      key="common.status"/>
                     </div>
                     <div>
-                        <c:if test='${null != param.deleted && 0 == param.deleted}'>
+                        <c:if test='${null != param.deleted && active == param.deleted}'>
                             <c:set var="check" value='checked="checked"' scope="page"/>
                         </c:if>
-                        <input type="radio" name="deleted" value="0" 
-                               id="status0" ${check} disabled="disabled"/>
-                        <label for="status0">
+                        <input type="radio" ${check} disabled="disabled"/>
+                        <label>
                             <fmt:message bundle="${labels}" 
                                          key="common.active"/>
                         </label>
                         <c:remove scope="page" var="check"/>
-                        <c:if test='${null != param.deleted && 1 == param.deleted}'>
+                        <c:if test='${null != param.deleted && inactive == param.deleted}'>
                             <c:set var="check" value='checked="checked"' scope="page"/>
                         </c:if>
-                        <input type="radio" name="deleted" value="1" 
-                               id="status1" ${check} disabled="disabled"/>
-                        <label for="status1">
+                        <input type="radio" ${check} disabled="disabled"/>
+                        <label>
                             <fmt:message bundle="${labels}" 
                                          key="common.inactive"/>
                         </label>

@@ -1,5 +1,4 @@
 <jsp:directive.include file="../resource-bundles.jsp"/>
-<jsp:directive.include file="../delete-status.jsp"/>
 <jsp:directive.include file="../jdbc-dsn.jsp"/>
 
 <html>

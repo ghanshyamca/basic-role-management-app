@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="/WEB-INF/tld/c.tld"%>
 <jsp:directive.include file="../resource-bundles.jsp"/>
+<jsp:directive.include file="../delete-status.jsp"/>
 
 <html>
     <head>
@@ -33,20 +34,20 @@
                     <c:if test='${null == param.deleted && null == status_error}'>
                         <c:set var="check" value='checked="checked"' scope="page"/>
                     </c:if>
-                    <c:if test='${null != param.deleted && 0 == param.deleted}'>
+                    <c:if test='${null != param.deleted && active == param.deleted}'>
                         <c:set var="check" value='checked="checked"' scope="page"/>
                     </c:if>
-                    <input type="radio" name="deleted" value="0" 
-                           id="status0" ${check}/>
-                    <label for="status0">
+                    <input type="radio" name="deleted" value="${active}" 
+                           id="status${active}" ${check}/>
+                    <label for="status${active}">
                         <fmt:message bundle="${labels}" key="common.active"/>
                     </label>
                     <c:remove scope="page" var="check"/>
-                    <c:if test='${null != param.deleted && 1 == param.deleted}'>
+                    <c:if test='${null != param.deleted && inactive == param.deleted}'>
                         <c:set var="check" value='checked="checked"' scope="page"/>
                     </c:if>
-                    <input type="radio" name="deleted" value="1" 
-                           id="status1" ${check}/>
+                    <input type="radio" name="deleted" value="${inactive}" 
+                           id="status${inactive}" ${check}/>
                     <label for="status1">
                         <fmt:message bundle="${labels}" 
                                      key="common.inactive"/>
