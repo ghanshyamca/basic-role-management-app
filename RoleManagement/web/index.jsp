@@ -11,11 +11,6 @@
         </p>
         <ul>
             <li>
-                <a href="jsp/rights/view-all.jsp">
-                    <fmt:message bundle="${labels}" key="index.list.rights"/>
-                </a>
-            </li>
-            <li>
                 <a href="jsp/modules/view-all.jsp">
                     <fmt:message bundle="${labels}" key="index.list.modules"/>
                 </a>
@@ -31,8 +26,18 @@
                 </a>
             </li>
             <li>
+                <a href="jsp/rights/view-all.jsp">
+                    <fmt:message bundle="${labels}" key="index.list.rights"/>
+                </a>
+            </li>
+            <li>
                 <a href="#">
-                    <fmt:message bundle="${labels}" key="index.list.user.rights"/>
+                    <fmt:message bundle="${labels}" key="index.list.user.group.rights"/>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <fmt:message bundle="${labels}" key="index.list.users"/>
                 </a>
             </li>
         </ul> 
