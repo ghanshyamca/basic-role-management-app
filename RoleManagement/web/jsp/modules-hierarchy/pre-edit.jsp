@@ -22,19 +22,26 @@
             <c:set scope="page" value="false" var="proceed"/>
         </c:if>
         <c:if test="${proceed}">
-            <c:set scope="page" value="${param.newChild}" var="childId"/>
-            <c:if test="${null == param.newChild || -1 == param.newChild}">
-                <c:set scope="page" value="${param.oldChild}" var="childId"/>
+            <c:if test="${null == child_error}">
+                <c:if test="${null == param.newChild or -1 == param.newChild}">
+                    <c:set scope="page" value="${param.oldChild}" var="childId"/>
+                </c:if>
+                <c:if test="${null != param.newChild and -1 != param.newChild}">
+                    <c:set scope="page" value="${param.newChild}" var="childId"/>
+                </c:if>
+            </c:if>
+            <c:if test="${null != child_error}">
+                <c:set scope="page" value="${param.newChild}" var="childId"/>
             </c:if>
             <c:catch var="error">
                 <sql:query dataSource="${jdbcDsn}" scope="page" var="parents">
                     select * from modules_tbl
                 </sql:query>
                 <sql:query dataSource="${jdbcDsn}" scope="page" var="childs">
-                    select p.* from modules_tbl p where p.modules_id = ?
-                     or p.modules_id not in(select c.modules_child_id from
-                     modules_hierarchy_tbl c)
-                     <sql:param value="${childId}"/>
+                    select p.* from modules_tbl p where
+                     p.modules_id not in(select c.modules_child_id from
+                    modules_hierarchy_tbl c) or p.modules_id = ?
+                    <sql:param value="${param.oldChild}"/>
                 </sql:query>
             </c:catch>
             <c:if test="${null == error}">
