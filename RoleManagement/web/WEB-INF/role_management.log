@@ -1,31 +1,16 @@
 /*C3*/SET SCHEMA PUBLIC
-drop table if exists user_modules_rights_tbl\u000a
+drop table if exists user_groups_rights_tbl\u000a
 drop table if exists modules_hierarchy_tbl\u000a
-drop table if exists user_groups_tbl\u000a
-drop table if exists rights_tbl\u000a
-drop table if exists modules_tbl\u000a
-drop table if exists users_tbl\u000a\u000a
-create table rights_tbl (\u000a    rights_id identity,\u000a    rights_text varchar(20) not null unique,\u000a    rights_deleted tinyint not null\u000a)\u000a\u000a
-create table modules_tbl (\u000a    modules_id identity,\u000a    modules_text varchar(20) not null unique,\u000a    modules_deleted tinyint not null\u000a)\u000a\u000a
-create table modules_hierarchy_tbl (\u000a    modules_parent_id integer not null,\u000a\u0009modules_child_id integer not null,\u000a\u0009foreign key (modules_parent_id)\u000a\u0009    references modules_tbl(modules_id),\u000a\u0009foreign key (modules_child_id)\u000a\u0009    references modules_tbl( modules_id),\u000a\u0009primary key(modules_parent_id, modules_child_id)\u000a)\u000a\u000a
-create table users_tbl (\u000a    users_id identity,\u000a    users_name varchar(20) not null unique,\u000a\u0009users_fname varchar(20) not null,\u000a\u0009users_lname varchar(20) not null,\u000a\u0009users_paswd varchar(20) not null,\u000a    users_deleted tinyint not null\u000a)\u000a\u000a
-create table user_group_tbl (\u000a    user_group_id identity,\u000a    user_group_text varchar(20) not null unique,\u000a    user_group_deleted tinyint not null\u000a)\u000a\u000a
-drop table if exists user_modules_rights_tbl\u000a
-drop table if exists modules_hierarchy_tbl\u000a
-drop table if exists user_groups_tbl\u000a
-drop table if exists rights_tbl\u000a
-drop table if exists modules_tbl\u000a
-drop table if exists users_tbl\u000a
-drop table if exists user_modules_rights_tbl\u000a
+drop table user_modules_rights_tbl
 drop table if exists modules_hierarchy_tbl\u000a
 drop table if exists user_group_tbl\u000a
 drop table if exists rights_tbl\u000a
 drop table if exists modules_tbl\u000a
-drop table if exists users_tbl\u000a\u000a
-create table rights_tbl (\u000a    rights_id identity,\u000a    rights_text varchar(20) not null unique,\u000a    rights_deleted tinyint not null\u000a)\u000a\u000a
+drop table if exists users_tbl
+\u000acreate table rights_tbl (\u000a    rights_id identity,\u000a    rights_text varchar(20) not null unique,\u000a    rights_deleted tinyint not null\u000a)\u000a\u000a
 create table modules_tbl (\u000a    modules_id identity,\u000a    modules_text varchar(20) not null unique,\u000a    modules_deleted tinyint not null\u000a)\u000a\u000a
 create table modules_hierarchy_tbl (\u000a    modules_parent_id integer not null,\u000a\u0009modules_child_id integer not null,\u000a\u0009foreign key (modules_parent_id)\u000a\u0009    references modules_tbl(modules_id),\u000a\u0009foreign key (modules_child_id)\u000a\u0009    references modules_tbl( modules_id),\u000a\u0009primary key(modules_parent_id, modules_child_id)\u000a)\u000a\u000a
 create table users_tbl (\u000a    users_id identity,\u000a    users_name varchar(20) not null unique,\u000a\u0009users_fname varchar(20) not null,\u000a\u0009users_lname varchar(20) not null,\u000a\u0009users_paswd varchar(20) not null,\u000a    users_deleted tinyint not null\u000a)\u000a\u000a
 create table user_group_tbl (\u000a    user_group_id identity,\u000a    user_group_text varchar(20) not null unique,\u000a    user_group_deleted tinyint not null\u000a)\u000a\u000a
-create table user_modules_rights_tbl (\u000a    user_rights_user_groups_id integer not null,\u000a\u0009user_rights_modules_id integer not null,\u000a\u0009user_rights_rights_id integer not null,\u000a\u0009foreign key (user_rights_user_groups_id)\u000a\u0009    references user_group_tbl (user_group_id),\u000a\u0009foreign key (user_rights_modules_id)\u000a\u0009    references modules_tbl(modules_id),\u000a\u0009foreign key (user_rights_rights_id)\u000a\u0009    references rights_tbl(rights_id),\u000a\u0009primary key(user_rights_user_groups_id, user_rights_modules_id,user_rights_rights_id)\u000a)\u000a\u000a
+create table user_groups_rights_tbl (\u000a    user_groups_rights_user_groups_id integer not null,\u000a\u0009user_groups_rights_modules_id integer not null,\u000a\u0009user_groups_rights_rights_id integer not null,\u000a\u0009foreign key (user_groups_rights_user_groups_id)\u000a\u0009    references user_group_tbl (user_group_id),\u000a\u0009foreign key (user_groups_rights_modules_id)\u000a\u0009    references modules_tbl(modules_id),\u000a\u0009foreign key (user_groups_rights_rights_id)\u000a\u0009    references rights_tbl(rights_id),\u000a\u0009primary key(user_groups_rights_user_groups_id, user_groups_rights_modules_id,user_groups_rights_rights_id)\u000a)\u000a
 DISCONNECT
