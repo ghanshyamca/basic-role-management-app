@@ -16,11 +16,21 @@
             <sql:query dataSource="${jdbcDsn}" scope="page" var="parents">
                 select * from modules_tbl
             </sql:query>
-            <sql:query dataSource="${jdbcDsn}" scope="page" var="childs">
-                select p.* from modules_tbl p where
-                 p.modules_id not in(select c.modules_child_id from
-                modules_hierarchy_tbl c)
-            </sql:query>
+            <c:if test="${null == param.child or -1 eq param.child}">
+                <sql:query dataSource="${jdbcDsn}" scope="page" var="childs">
+                    select p.* from modules_tbl p where
+                     p.modules_id not in(select c.modules_child_id from
+                    modules_hierarchy_tbl c)
+                </sql:query>
+            </c:if>
+            <c:if test="${null != param.child and -1 != param.child}">
+                <sql:query dataSource="${jdbcDsn}" scope="page" var="childs">
+                    select p.* from modules_tbl p where
+                     p.modules_id not in(select c.modules_child_id from
+                    modules_hierarchy_tbl c) or p.modules_id = ?
+                    <sql:param value="${param.child}"/>
+                </sql:query>
+            </c:if>
         </c:catch>
         <c:if test="${null == error}">
             <form method="post" action="post-add.jsp">
