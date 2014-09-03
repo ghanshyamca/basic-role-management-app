@@ -35,9 +35,15 @@
                 <c:set scope="page" var="count" value="${1 + count}"/>
             <div>
                 <form action="pre-edit.jsp" method="post" class="margin-0-px inline">
+                    <input type="hidden" name="id" value="${row.user_group_id}"/>
+                    <input type="hidden" name="title" value="${row.user_group_text}"/>
+                    <input type="hidden" name="deleted" value="${row.user_group_deleted}"/>
                     <input type="submit" value="${edit}" class="inline"/>
                 </form>
                 <form action="view-one.jsp" method="post" class="margin-0-px inline">
+                    <input type="hidden" name="id" value="${row.user_group_id}"/>
+                    <input type="hidden" name="title" value="${row.user_group_text}"/>
+                    <input type="hidden" name="deleted" value="${row.user_group_deleted}"/>
                     <input type="submit" value="${view}" class="inline"/>
                 </form>
                 <span class="bold-font">
