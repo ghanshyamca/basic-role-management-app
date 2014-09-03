@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="jsp/user-groups-rights/view-all.jsp">
                     <fmt:message bundle="${labels}" key="index.list.user.group.rights"/>
                 </a>
             </li>
